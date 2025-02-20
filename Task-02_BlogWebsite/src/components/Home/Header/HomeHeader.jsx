@@ -52,7 +52,7 @@ const HomeHeader = () => {
         {/* left side  */}
         <div className="flex items-center gap-3">
           <Link to={"/"}>
-            <img src="../icon.png" alt="icon" className="max-w-[2rem]"/>
+            <img src="../icon.png" alt="icon" className="max-w-[2rem]" />
           </Link>
           <Search modal={searchModal} setModal={setSearchModal} />
         </div>
@@ -60,13 +60,15 @@ const HomeHeader = () => {
         <div className="flex items-center gap-3 sm:gap-7">
           <span
             onClick={() => setSearchModal(true)}
-            className="flex sm:hidden text-3xl text-gray-300 cursor-pointer">
+            className="flex sm:hidden text-3xl text-gray-300 cursor-pointer"
+          >
             <CiSearch />
           </span>
           {pathname === "/write" ? (
             <button
               onClick={() => setPublish(true)}
-              className="btn !bg-green-700 !py-1 !text-white !rounded-full">
+              className="btn !bg-green-700 !py-1 !text-white !rounded-full"
+            >
               Publish
             </button>
           ) : editPath === "editPost" ? (
@@ -74,13 +76,15 @@ const HomeHeader = () => {
               onClick={handleEdit}
               className={`btn !bg-green-700 !py-1 !text-white !rounded-full
               ${loading ? "opacity-40" : ""}
-              `}>
+              `}
+            >
               {loading ? "Updating..." : "Save and Update"}
             </button>
           ) : (
             <Link
               to="/write"
-              className="hidden md:flex items-center gap-1 text-gray-500">
+              className="hidden md:flex items-center gap-1 text-gray-500"
+            >
               <span className="text-3xl">
                 <LiaEditSolid />
               </span>
@@ -91,12 +95,21 @@ const HomeHeader = () => {
             <IoMdNotificationsOutline />
           </span>
           <div className="flex items-center relative">
-            <img
-              onClick={() => setModal(true)}
-              className="w-[2.3rem] h-[2.3rem] object-cover rounded-full cursor-pointer"
-              src={getUserData?.userImg || "/profile.jpg"}
-              alt="profile-img"
-            />
+            {getUserData ? (
+              <img
+                onClick={() => setModal(true)}
+                className="w-[2.3rem] h-[2.3rem] object-cover rounded-full cursor-pointer"
+                src={getUserData.userImg}
+                alt="profile-img"
+              />
+            ) : (
+              <img
+                onClick={() => setModal(true)}
+                className="w-[2.3rem] h-[2.3rem] object-cover rounded-full cursor-pointer"
+                src="../profile.jpg"
+                alt="profile-img"
+              />
+            )}
             <span className="text-gray-500 cursor-pointer">
               <MdKeyboardArrowDown />
             </span>
@@ -104,7 +117,8 @@ const HomeHeader = () => {
               <div
                 className={`${
                   modal ? "visible opacity-100%" : "invisible opacity-0"
-                } transition-all duration-100`}>
+                } transition-all duration-100`}
+              >
                 <UserModal setModal={setModal} />
               </div>
             </Modal>
