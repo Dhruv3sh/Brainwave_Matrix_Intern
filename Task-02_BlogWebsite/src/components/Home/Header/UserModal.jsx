@@ -49,7 +49,7 @@ const UserModal = ({ setModal }) => {
   return (
     <section
       className="absolute w-[18rem] p-6 bg-white right-0 top-[100%]
-    shadows rounded-md z-50 text-gray-500">
+    shadows rounded-md z-50 text-gray-500 transition-all duration-100">
       <Link
         to="/write"
         className="flex md:hidden items-center gap-1 text-gray-500">
@@ -72,7 +72,7 @@ const UserModal = ({ setModal }) => {
       </div>
       <button
         onClick={logout}
-        className="flex flex-col pt-5 cursor-pointer hover:text-black/70">
+        className="flex flex-col pt-5 cursor-pointer hover:text-red-700">
         Sign Out
         <span className="text-sm">{secretEmail(currentUser?.email)}</span>
       </button>

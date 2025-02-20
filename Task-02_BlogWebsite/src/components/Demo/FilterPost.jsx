@@ -15,7 +15,7 @@ const FilterPost = () => {
       <div>
         <h3 className="text-3xl pb-6 border-b border-black mb-[3rem]">
           {filteredData.length
-            ? "Your Filtered Posts :"
+            ? "Your Filtered Posts"
             : "There is no post with this tag"}
         </h3>
         {postLoading ? (

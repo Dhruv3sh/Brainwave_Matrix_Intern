@@ -52,9 +52,7 @@ const HomeHeader = () => {
         {/* left side  */}
         <div className="flex items-center gap-3">
           <Link to={"/"}>
-            <span className="text-5xl">
-              <BsMedium />
-            </span>
+            <img src="../icon.png" alt="icon" className="max-w-[2rem]"/>
           </Link>
           <Search modal={searchModal} setModal={setSearchModal} />
         </div>
@@ -102,7 +100,7 @@ const HomeHeader = () => {
             <span className="text-gray-500 cursor-pointer">
               <MdKeyboardArrowDown />
             </span>
-            <Modal modal={modal} setModal={setModal}>
+            <Modal modal={modal} setModal={setModal} visibility={0}>
               <div
                 className={`${
                   modal ? "visible opacity-100%" : "invisible opacity-0"
