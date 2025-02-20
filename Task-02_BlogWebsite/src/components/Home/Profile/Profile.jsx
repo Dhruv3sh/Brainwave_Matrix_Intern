@@ -11,29 +11,28 @@ import { Blog } from "../../../Context/Context";
 import { useParams } from "react-router-dom";
 import useSingleFetch from "../../hooks/useSingleFetch";
 
+const activities = [
+  {
+    title: "Home",
+    comp: ProfileHome,
+  },
+  {
+    title: "Lists",
+    comp: ProfileLists,
+  },
+  {
+    title: "About",
+    comp: ProfileAbout,
+  },
+];
+
 const Profile = () => {
   const { allUsers, currentUser } = Blog();
   const { userId } = useParams();
-  const activities = [
-    {
-      title: "Home",
-      comp: ProfileHome,
-    },
-    {
-      title: "Lists",
-      comp: ProfileLists,
-    },
-    {
-      title: "About",
-      comp: ProfileAbout,
-    },
-  ];
+  const getUserData = allUsers.find((user) => user.id === userId);
   const [currentActive, setCurrentActive] = useState(activities[0]);
   const [modal, setModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-
-  const getUserData = allUsers.find((user) => user.id === userId);
-
   const { data: follows } = useSingleFetch("users", userId, "follows");
   const { data: followers } = useSingleFetch("users", userId, "followers");
 
@@ -62,7 +61,8 @@ const Profile = () => {
                 ? "border-b border-gray-500"
                 : ""
             }
-            `}>
+            `}
+            >
               <button onClick={() => setCurrentActive(item)}>
                 {item.title}
               </button>
@@ -78,7 +78,8 @@ const Profile = () => {
       <button
         onClick={() => setModal(true)}
         className="fixed top-[8rem] right-0 w-[2rem] h-[2rem] bg-black text-white
-        grid place-items-center md:hidden">
+        grid place-items-center md:hidden"
+      >
         <IoSettingsSharp />
       </button>
       {/* user details  */}
@@ -87,22 +88,32 @@ const Profile = () => {
           className={`flex-[1] border-l border-gray-300 p-[2rem] z-10
         fixed right-0 bottom-0 top-0 w-[18rem] bg-white md:sticky
         ${modal ? "translate-x-0" : "translate-x-[100%] md:translate-x-0"}
-        transition-all duration-500`}>
+        transition-all duration-500`}
+        >
           {/* icons to close out modal  */}
           <div className="pb-4 text-right">
             <button
               onClick={() => setModal(false)}
-              className="inline-block md:hidden">
+              className="inline-block md:hidden"
+            >
               <LiaTimesSolid />
             </button>
           </div>
           {/* profile details  */}
           <div className="sticky top-7 flex flex-col justify-between">
-            <img
-              className="w-[3.5rem] h-[3.5rem] object-cover rounded-full"
-              src={getUserData?.userImg || "/profile.jpg"}
-              alt="profile-img"
-            />
+            {getUserData ? (
+              <img
+                className="w-[3.5rem] h-[3.5rem] object-cover rounded-full"
+                src={getUserData.userImg}
+                alt="profile-img"
+              />
+            ) : (
+              <img
+                className="w-[3.5rem] h-[3.5rem] object-cover rounded-full"
+                src='../profile.jpg'
+                alt="profile-img"
+              />
+            )}
             <h2 className="py-2 font-bold capitalize">
               {getUserData?.username}
             </h2>
@@ -112,7 +123,8 @@ const Profile = () => {
             {currentUser?.uid === getUserData?.userId && (
               <button
                 onClick={() => setEditModal(true)}
-                className="text-green-700 pt-6 text-sm w-fit">
+                className="text-green-700 pt-6 text-sm w-fit"
+              >
                 Edit Profile
               </button>
             )}
