@@ -17,17 +17,26 @@ const SignIn = ({ setSignReq }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (form[("email", "password")] === "") {
-      toast.error("All fields are required!!!");
+      toast.error("All fields are required!!!",{
+        autoClose: 1200,
+      });
     }
 
     try {
       setLoading(true);
       await signInWithEmailAndPassword(auth, form.email, form.password);
       navigate("/");
-      toast.success("User has been logged in ");
+      toast.success("User has been logged in",{
+        autoClose: 1200,
+      });
       setLoading(false);
     } catch (error) {
-      toast.error(error.message);
+      toast.error(
+        error.message.split("auth/")[1].split(")")[0].replace(/-/g, " "),
+        {
+          autoClose: 1200
+        }
+      );
       setLoading(false);
     }
   };
@@ -44,14 +53,16 @@ const SignIn = ({ setSignReq }) => {
         <button
           className={`px-4 py-1 text-sm rounded-full bg-green-700
         hover:bg-green-800 text-white w-fit mx-auto
-        ${loading ? "opacity-50 pointer-events-none" : ""}`}>
+        ${loading ? "opacity-50 pointer-events-none" : ""}`}
+        >
           Sign In
         </button>
       </form>
       <button
         onClick={() => setSignReq("")}
         className="mt-5 text-sm text-green-600 hover:text-green-700
-      flex items-center mx-auto">
+      flex items-center mx-auto"
+      >
         <MdKeyboardArrowLeft />
         All sign In Options
       </button>

@@ -20,9 +20,13 @@ const SignUp = ({ setSignReq, setModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (form[("username", "email", "password", "rePassword")] === "") {
-      toast.error("All fields are required");
+      toast.error("All fields are required",{
+        autoClose: 1200,
+      })
     } else if (form["password"] !== form["rePassword"]) {
-      toast.error("Your passwords are not matching!!");
+      toast.error("Your passwords are not matching!!",{
+        autoClose: 1200,
+      })
       return;
     } else {
       setLoading(true);
@@ -45,7 +49,9 @@ const SignUp = ({ setSignReq, setModal }) => {
           created: Date.now(),
         });
         navigate("/");
-        toast.success("New Account has been Created");
+        toast.success("New Account has been Created",{
+          autoClose: 1200,
+        })
         setModal(false);
         setLoading(false);
       }

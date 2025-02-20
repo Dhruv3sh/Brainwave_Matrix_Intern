@@ -26,7 +26,7 @@ const Follow = () => {
                 className="flex-1 flex items-center gap-2 cursor-pointer">
                 <img
                   className="w-[3rem] h-[3rem] object-cover gap-2 cursor-pointer rounded-full"
-                  src={userImg}
+                  src={userImg || "../profile.jpg"}
                   alt="userImg"
                 />
                 <div className="flex flex-col gap-1">
