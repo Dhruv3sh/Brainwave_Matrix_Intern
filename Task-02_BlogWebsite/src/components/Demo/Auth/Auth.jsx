@@ -42,7 +42,7 @@ const Auth = ({ modal, setModal }) => {
   };
 
   return (
-    <Modal modal={modal} setModal={setModal}>
+    <Modal modal={modal} setModal={setModal} visibility={100}>
       <section
         className={`z-50 fixed top-0 bottom-0 left-0 md:left-[18rem]
         overflow-auto right-0 md:right-[18rem] bg-white shadow-[0px_0px_8px_rgba(0,0,0,0.2)] transition-all duration-400
