@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { BsMedium } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
 import { LiaEditSolid } from "react-icons/lia";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Search from "./Search";
@@ -46,9 +44,9 @@ const HomeHeader = () => {
   };
 
   return (
-    <header className="border-b border-gray-200">
+    <header className=" bg-white border-b border-gray-200 sticky top-0 z-50 ">
       {userLoading && <Loading />}
-      <div className="size h-[60px] flex items-center justify-between">
+      <div className="size h-[70px] flex items-center justify-between">
         {/* left side  */}
         <div className="flex items-center gap-3">
           <Link to={"/"}>
@@ -88,24 +86,22 @@ const HomeHeader = () => {
               <span className="text-3xl">
                 <LiaEditSolid />
               </span>
-              <span className="text-sm mt-2">Write</span>
+              <span className="text-sm mt-2 select-none">Write</span>
             </Link>
           )}
-          <span className="text-3xl text-gray-500 cursor-pointer">
-            <IoMdNotificationsOutline />
-          </span>
+
           <div className="flex items-center relative">
             {getUserData ? (
               <img
                 onClick={() => setModal(true)}
-                className="w-[2.3rem] h-[2.3rem] object-cover rounded-full cursor-pointer"
+                className="w-[2.3rem] h-[2.3rem] object-cover rounded-full cursor-pointer select-none"
                 src={getUserData.userImg}
                 alt="profile-img"
               />
             ) : (
               <img
                 onClick={() => setModal(true)}
-                className="w-[2.3rem] h-[2.3rem] object-cover rounded-full cursor-pointer"
+                className="w-[2.3rem] h-[2.3rem] object-cover rounded-full cursor-pointer select-none"
                 src="../profile.jpg"
                 alt="profile-img"
               />
@@ -113,11 +109,11 @@ const HomeHeader = () => {
             <span className="text-gray-500 cursor-pointer">
               <MdKeyboardArrowDown />
             </span>
-            <Modal modal={modal} setModal={setModal} visibility={0}>
+            <Modal modal={modal} setModal={setModal} visibility={'0'}>
               <div
                 className={`${
                   modal ? "visible opacity-100%" : "invisible opacity-0"
-                } transition-all duration-100`}
+                } `}
               >
                 <UserModal setModal={setModal} />
               </div>
