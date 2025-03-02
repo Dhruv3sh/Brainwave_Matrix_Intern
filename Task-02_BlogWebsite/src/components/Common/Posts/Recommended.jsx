@@ -16,8 +16,7 @@ const Recommended = ({ post: singlePost }) => {
           return;
         }
 
-        const postTag = post.tags;
-        const commonTags = postTag.filter((tag) =>
+        const commonTags = post.tags.filter((tag) =>
           singlePost?.tags?.includes(tag)
         );
 
@@ -28,7 +27,9 @@ const Recommended = ({ post: singlePost }) => {
           });
         }
       });
-    recommendedPost.sort(() => Math.round() * -0.5);
+      
+    recommendedPost.sort(() => Math.random() - 0.5);
+    console.log(recommendedPost);
     const minRecommendation = 4;
     const slicePost = recommendedPost.slice(0, minRecommendation);
     setCommonTags(slicePost);
@@ -37,7 +38,7 @@ const Recommended = ({ post: singlePost }) => {
   return (
     <section className="bg-gray-100">
       <div className="w-[90%] md:w-[90%] lg:w-[60%] mx-auto py-[3rem]">
-        <h2 className="text-xl font-bold">Recommended from Medium</h2>
+        <h2 className="text-xl font-bold">Recommended from OneBlogs</h2>
         {commonTags.length < 0 ? (
           <p>No recommended posts found based on your preference</p>
         ) : (
@@ -58,7 +59,7 @@ const Post = ({ post }) => {
   const { title, desc, created, postImg, id: postId, userId } = post;
   const { data } = useFetch("users");
 
-  const navigate = useNavigate(null);
+  const navigate = useNavigate();
 
   const { username, userImg } =
     data && data.find((user) => user?.id === userId);
