@@ -78,7 +78,7 @@ const SignUp = ({ setSignReq, setModal }) => {
         <button
           className={`px-4 py-1 text-sm rounded-full bg-green-700
         hover:bg-green-800 text-white w-fit mx-auto
-        ${loading ? "opacity-50 " : ""}`}>
+        ${loading ? "opacity-50 pointer-events-none" : ""}`}>
           Sign Up
         </button>
       </form>
