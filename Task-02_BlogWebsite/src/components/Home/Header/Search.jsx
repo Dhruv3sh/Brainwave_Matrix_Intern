@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import Modal from "../../../utils/Modal";
 import { Blog } from "../../../Context/Context";
@@ -11,7 +11,8 @@ const Search = ({ modal, setModal }) => {
   const searchData =
     postData &&
     postData?.filter((post) =>
-      post.title.toLowerCase().includes(search.toLowerCase())
+      post.title.toUpperCase().includes(search.toUpperCase()) ||
+      post.tags.some((tag) => tag.toUpperCase().includes(search.toUpperCase()))
     );
 
   const navigate = useNavigate();
