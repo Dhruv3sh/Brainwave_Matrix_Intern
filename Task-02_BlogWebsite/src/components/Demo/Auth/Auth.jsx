@@ -48,10 +48,10 @@ const Auth = ({ modal, setModal }) => {
   };
 
   return (
-    <Modal modal={modal} setModal={setModal} visibility={100}>
+    <Modal modal={modal} setModal={setModal} visibility={"100"}>
       <section
-        className={`z-50 fixed top-0 bottom-0 left-0 md:left-[18rem]
-        overflow-auto right-0 md:right-[18rem] bg-white shadow-[0px_0px_8px_rgba(0,0,0,0.2)] transition-all duration-400
+        className={`z-50 fixed top-0 bottom-0 left-0 md:left-[8rem]
+        overflow-auto right-0 md:right-[8rem] bg-white shadow-[0px_0px_8px_rgba(0,0,0,0.2)] transition-all duration-400
         ${modal ? "visible opacity-100" : "invisible opacity-0"}`}
       >
         <button
@@ -60,23 +60,27 @@ const Auth = ({ modal, setModal }) => {
         >
           <LiaTimesSolid />
         </button>
-        <div className="flex flex-col justify-center items-center gap-[3rem]">
+        <div className=" mt-6 flex flex-col justify-center items-center gap-[3rem]">
           {signReq === "" ? (
             <>
               <h1 className="text-3xl pt-[6rem] pb-4 font-serif">
                 {createUser ? "Join OneBlogs." : "Welcome Back."}
               </h1>
               <div className="flex flex-col gap-2 w-fit mx-auto">
-                <Button
-                  click={googleAuth}
-                  icon={<FcGoogle className="text-xl" />}
-                  text={`${createUser ? "Sign Up" : "Sign In"} With Google`}
-                />
-                <Button
-                  click={() => setSignReq(createUser ? "sign-up" : "sign-in")}
-                  icon={<AiOutlineMail className="text-xl" />}
-                  text={`${createUser ? "Sign Up" : "Sign In"} With Email`}
-                />
+                <button
+                  onClick={googleAuth}
+                  className="flex items-center justify-center gap-2 sm:w-[20rem] border border-black px-3 py-2 rounded-full"
+                >
+                  <FcGoogle className="text-xl" />
+                  {`${createUser ? "Sign Up" : "Sign In"} With Google`}
+                </button>
+                <button
+                  onClick={() => setSignReq(createUser ? "sign-up" : "sign-in")}
+                  className="flex items-center justify-center gap-2 sm:w-[20rem] border border-black px-3 py-2 rounded-full"
+                >
+                  <AiOutlineMail className="text-xl" />
+                  {`${createUser ? "Sign Up" : "Sign In"} With Email`}
+                </button>
               </div>
               <p>
                 {createUser ? "Already have an account?" : "No Account?"}
@@ -104,15 +108,3 @@ const Auth = ({ modal, setModal }) => {
 };
 
 export default Auth;
-
-const Button = ({ icon, text, click }) => {
-  return (
-    <button
-      onClick={click}
-      className="flex items-center gap-10 sm:w-[20rem] border border-black
-        px-3 py-2 rounded-full"
-    >
-      {icon} {text}
-    </button>
-  );
-};
