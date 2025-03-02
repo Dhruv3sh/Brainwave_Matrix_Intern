@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 const PostsCard = ({ post }) => {
   const { title, desc, created, postImg, id: postId, userId, username } = post;
   const { currentUser } = Blog();
-
   const navigate = useNavigate();
 
   return (
@@ -18,8 +17,11 @@ const PostsCard = ({ post }) => {
         onClick={() => navigate(`/post/${postId}`)}
         className="flex flex-col sm:flex-row gap-4 cursor-pointer">
         <div className="flex-[2.5]">
-          <p className="pb-2 font-semibold capitalize">{username}</p>
-          <h2 className="text-xl font-bold line-clamp-2 leading-6 capitalize">
+          <div className="flex">
+            <img src={post?.userImg} alt="img" className="h-6 w-6 mr-[0.5rem] rounded-full"/>
+            <p className="pb-2 font-semibold capitalize">{username}</p>
+          </div>
+          <h2 className="text-xl font-bold line-clamp-2 capitalize">
             {title}
           </h2>
           <div
@@ -32,7 +34,7 @@ const PostsCard = ({ post }) => {
             <img
               src={postImg}
               alt="postImg"
-              className="w-[53rem] h-[8rem] object-cover"
+              className=" w-[53rem] min-h-[8rem] sm:h-[8rem] object-cover"
             />
           </div>
         )}
