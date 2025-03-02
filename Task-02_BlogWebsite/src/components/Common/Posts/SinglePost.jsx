@@ -74,7 +74,7 @@ const SinglePost = () => {
     fetchPost();
   }, [postId, post?.userId]);
 
-  const { title, desc, postImg, username, created, userImg, userId } = post;
+  const { title, desc, postImg, username, created, userId } = post;
 
   const navigate = useNavigate();
 
@@ -90,7 +90,7 @@ const SinglePost = () => {
               <img
                 onClick={() => navigate(`/profile/${userId}`)}
                 className="w-[3rem] h-[3rem] object-cover rounded-full cursor-pointer"
-                src={userImg}
+                src={post?.userImg}
                 alt="user-img"
               />
               <div>
@@ -131,6 +131,17 @@ const SinglePost = () => {
                 className="mt-6"
                 dangerouslySetInnerHTML={{ __html: desc }}
               />
+            </div>
+            <div className="my-2 flex items-center gap-3 flex-wrap">
+              {post?.tags?.map((item, i) => (
+                <button
+                  onClick={() => navigate(`/filter/${item}`)}
+                  key={i}
+                  className="bg-gray-200 mt-4 py-2 px-3 text-base rounded-full hover:bg-gray-300 transition-all"
+                >
+                  {item}
+                </button>
+              ))}
             </div>
           </section>
           {post && <Recommended post={post} />}
