@@ -10,10 +10,6 @@ import { toast } from "react-toastify";
 const Actions = ({ postId, title, desc }) => {
   const { setUpdateData, currentUser } = Blog();
   const [showDrop, setShowDrop] = useState(false);
-  const handleClick = () => {
-    setShowDrop(!showDrop);
-  };
-
   const navigate = useNavigate(null);
 
   const handleEdit = () => {
@@ -47,27 +43,23 @@ const Actions = ({ postId, title, desc }) => {
   };
   return (
     <div className="relative">
-      <button onClick={handleClick}>
+      <button onClick={() => setShowDrop(!showDrop)}>
         <BsThreeDots className="text-2xl" />
       </button>
       <DropDown showDrop={showDrop} setShowDrop={setShowDrop} size="w-[7rem]">
-        <Button click={handleEdit} title="Edit Story" />
-        <Button click={handleRemove} title="Delete Story" />
+        <button
+          onClick={handleEdit}
+          className="p-2 hover:bg-gray-100 w-full text-sm text-left">
+          Edit Story
+        </button>
+        <button
+          onClick={handleRemove}
+          className="p-2 hover:bg-gray-100  w-full text-sm text-left text-red-600">
+          Delete Story
+        </button>
       </DropDown>
     </div>
   );
 };
 
 export default Actions;
-
-const Button = ({ click, title }) => {
-  return (
-    <button
-      onClick={click}
-      className={`p-2 hover:bg-gray-100 hover:text-black/80 w-full text-sm text-left
-    ${title === "Delete Story" ? "text-red-600" : ""}
-    `}>
-      {title}
-    </button>
-  );
-};

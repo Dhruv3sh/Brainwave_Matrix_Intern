@@ -49,7 +49,7 @@ const Comments = ({ postId }) => {
   }, [data]);
 
   return (
-    <Modal setModal={setShowComment} modal={showComment}>
+    <Modal setModal={setShowComment} modal={showComment} visibility={'50'}>
       <section
         className={`fixed top-0 right-0 bottom-0 z-50 bg-white w-[22rem] shadows p-5
         overflow-y-auto transition-all duration-500
@@ -105,7 +105,7 @@ const Comments = ({ postId }) => {
           </div>
         )}
       </section>
-    </Modal>
+    </Modal >
   );
 };
 

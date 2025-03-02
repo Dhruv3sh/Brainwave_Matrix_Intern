@@ -14,6 +14,7 @@ import {
 } from "react-icons/bi";
 import { toast } from "react-toastify";
 
+
 const SharePost = () => {
   const [showDrop, setShowDrop] = useState(false);
   const path = window.location.href;
@@ -21,10 +22,14 @@ const SharePost = () => {
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(path);
-      toast.success("Link has been copied");
+      toast.success("Link has been copied",{
+        autoClose:1200
+      });
       setShowDrop(false);
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message,{
+        autoClose:1200
+      });
       setShowDrop(false);
     }
   };

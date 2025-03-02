@@ -5,7 +5,7 @@ const Input = ({ type, title, form, setForm }) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 min-w-[15rem] max-w-[25rem] mx-auto">
       <label className="text-sm capitalize">{title}</label>
       <input
         className="text-center border-b border-black outline-none"

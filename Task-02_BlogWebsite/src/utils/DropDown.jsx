@@ -5,7 +5,7 @@ const DropDown = ({ children, size, showDrop, setShowDrop }) => {
   useEffect(() => {
     const clickOutside = (e) => {
       if (showDrop && dropRef.current && !dropRef.current.contains(e.target)) {
-        setShowDrop(false);
+        setShowDrop(!showDrop);
       }
     };
     window.addEventListener("mousedown", clickOutside);

@@ -64,12 +64,16 @@ const Preview = ({ setPublish, description, title }) => {
     setLoading(true);
     try {
       if (!preview.title || !desc || tags.length === 0) {
-        toast.error("All fields are required!!!");
+        toast.error("All fields are required!!!",{
+          autoClose: 1200
+        });
         return;
       }
 
       if (preview.title.length < 5) {
-        toast.error("Title must be at least 5 letters");
+        toast.error("Title must be at least 5 letters",{
+          autoClose: 1200
+        });
         return;
       }
 
@@ -87,12 +91,16 @@ const Preview = ({ setPublish, description, title }) => {
         created: Date.now(),
         pageViews: 0,
       });
-      toast.success("Post has been added");
+      toast.success("Post has been added",{
+        autoClose: 1200,
+      });
       navigate("/");
       setPublish(false);
       setPreview({ title: "", photo: "" });
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message,{
+        autoClose: 1200,
+      });
     } finally {
       setLoading(false);
     }
@@ -146,19 +154,19 @@ const Preview = ({ setPublish, description, title }) => {
             />
             <p className="text-gray-500 pt-4 text-sm">
               <span className="font-bold">Note:</span> Changes here will affect
-              how your story appears in public places like Medium’s homepage and
+              how your story appears in public places like OneBlogs homepage and
               in subscribers’ inboxes — not the contents of the story itself.
             </p>
           </div>
           <div className="flex-[1] flex flex-col gap-4 mb-5 md:mb-0">
             <h3 className="text-2xl">
-              Publishing to: <span className="font-bold capitalize">Milad Tech</span>
+              Publishing to: <span className="font-bold capitalize">OneBlogs</span>
             </h3>
             <p>
-              Add or change topics up to 5 so readers know what your story is
+              Add or change tags up to 2 so readers know what your story is
               about
             </p>
-            <TagsInput value={tags} onChange={setTags} />
+            <TagsInput value={tags} onChange={(newTags) => setTags(newTags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1)))} />
             <button
               onClick={handleSubmit}
               className="btn !bg-green-800 !w-fit !text-white !rounded-full">

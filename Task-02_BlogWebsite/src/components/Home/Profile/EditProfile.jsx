@@ -36,7 +36,9 @@ const EditProfile = ({ editModal, setEditModal, getUserData }) => {
     const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
   
     if (!cloudName || !uploadPreset) {
-      toast.error("Cloudinary credentials are missing!");
+      toast.error("Cloudinary credentials are missing!",{
+        autoClose: 1200
+      });
       return null;
     }
   
@@ -53,7 +55,9 @@ const EditProfile = ({ editModal, setEditModal, getUserData }) => {
       const data = await response.json();
       return data.secure_url; // Cloudinary uploaded image URL
     } catch (error) {
-      toast.error("Image upload failed");
+      toast.error("Image upload failed",{
+        autoClose: 1200
+      });
       return null;
     }
   };
@@ -62,7 +66,9 @@ const EditProfile = ({ editModal, setEditModal, getUserData }) => {
   // Save form data
   const saveForm = async () => {
     if (form.username.trim() === "" || form.bio.trim() === "") {
-      toast.error("All inputs are required!!!");
+      toast.error("All inputs are required!!!",{
+        autoClose: 1200
+      });
       return;
     }
 
@@ -90,9 +96,13 @@ const EditProfile = ({ editModal, setEditModal, getUserData }) => {
 
       setLoading(false);
       setEditModal(false);
-      toast.success("Profile has been updated");
+      toast.success("Profile has been updated",{
+        autoClose: 1200
+      });
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message,{
+        autoClose: 1200
+      });
       setLoading(false);
     }
   };

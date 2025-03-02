@@ -78,18 +78,27 @@ const Comment = ({ item: comment, postId }) => {
                   <>
                     <button
                       onClick={() => setDrop(!drop)}
-                      className="text-2xl hover:opacity-70">
+                      className="text-2xl hover:opacity-70"
+                    >
                       <BiDotsHorizontalRounded />
                     </button>
                     <DropDown
                       showDrop={drop}
                       setShowDrop={setDrop}
-                      size="w-[10rem]">
-                      <Button
-                        click={editCommentText}
-                        title="Edit this response"
-                      />
-                      <Button click={removeComment} title="Delete" />
+                      size="w-[10rem]"
+                    >
+                      <button
+                        onClick={editCommentText}
+                        className="p-2 hover:bg-gray-200 text-black/80 w-full text-sm text-left"
+                      >
+                        Edit this response
+                      </button>
+                      <button
+                        onClick={removeComment}
+                        className="p-2 hover:bg-gray-200 text-black/80 w-full text-sm text-left"
+                      >
+                        Delete
+                      </button>
                     </DropDown>
                   </>
                 )}
@@ -111,14 +120,16 @@ const Comment = ({ item: comment, postId }) => {
             value={editComment}
             onChange={(e) => setEditComment(e.target.value)}
             placeholder="Write your update text..."
-            className="w-full resize-none outline-none text-sm"></textarea>
+            className="w-full resize-none outline-none text-sm"
+          ></textarea>
           <div className="flex items-center justify-end gap-2">
             <button onClick={() => setIsEdit(false)} className="w-fit text-sm">
               Cancel
             </button>
             <button
               onClick={handleEdit}
-              className="btn !text-white !bg-green-700 !rounded-full !text-xs">
+              className="btn !text-white !bg-green-700 !rounded-full !text-xs"
+            >
               {loading ? "Updating..." : "Update"}
             </button>
           </div>
@@ -129,13 +140,3 @@ const Comment = ({ item: comment, postId }) => {
 };
 
 export default Comment;
-
-const Button = ({ click, title }) => {
-  return (
-    <button
-      onClick={click}
-      className="p-2 hover:bg-gray-200 text-black/80 w-full text-sm text-left">
-      {title}
-    </button>
-  );
-};

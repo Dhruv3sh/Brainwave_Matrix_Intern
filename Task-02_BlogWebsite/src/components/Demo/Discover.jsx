@@ -11,7 +11,7 @@ const Discover = () => {
         <div className="my-2 flex items-center gap-3 flex-wrap">
           {discover.map((item, i) => (
             <button
-              onClick={() => navigate(`/filter/${item.toLowerCase()}`)}
+              onClick={() => navigate(`/filter/${item}`)}
               key={i}
               className="bg-gray-200 py-2 px-3 text-sm rounded-full">
               {item}
@@ -22,9 +22,9 @@ const Discover = () => {
           See more topics
         </button>
       </div>
-      <div className="flex items-center flex-wrap gap-3 leading-3 pt-8">
+      <div className="flex items-center flex-wrap gap-3 leading-3 pt-8 max-md:hidden">
         {discoverActions.map((item, i) => (
-          <button key={i} className="text-md text-black1">
+          <button key={i} className="text-md text-gray-500 hover:text-black">
             {item}
           </button>
         ))}

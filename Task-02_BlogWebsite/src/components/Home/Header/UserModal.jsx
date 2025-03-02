@@ -46,7 +46,7 @@ const UserModal = ({ setModal }) => {
       });
     } catch (error) {
       toast.error(
-        error.message.split("auth/")[1].split(")")[0].replace(/-/g, " "),
+        error.message,
         {
           autoClose: 1200,
         }
@@ -55,12 +55,12 @@ const UserModal = ({ setModal }) => {
   };
   return (
     <section
-      className="absolute w-[18rem] p-6 bg-white right-0 top-[100%]
-    shadows rounded-md z-50 text-gray-500 transition-all duration-100"
+      className="absolute w-[18rem] p-6 mt-1 bg-white right-0 top-[100%]
+    shadows rounded-md z-50 text-gray-500 "
     >
       <Link
         to="/write"
-        className="flex md:hidden items-center gap-1 text-gray-500"
+        className="flex md:hidden items-center gap-1 text-gray-500 pb-4"
       >
         <span className="text-3xl">
           <LiaEditSolid />

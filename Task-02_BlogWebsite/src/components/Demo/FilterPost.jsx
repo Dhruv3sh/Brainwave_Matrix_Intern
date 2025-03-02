@@ -13,10 +13,10 @@ const FilterPost = () => {
   return (
     <section className="size my-[2rem]">
       <div>
-        <h3 className="text-3xl pb-6 border-b border-black mb-[3rem]">
+        <h3 className="text-3xl pb-6 border-b border-black mb-[3rem] capitalize font-semibold ">
           {filteredData.length
-            ? "Your Filtered Posts"
-            : "There is no post with this tag"}
+            ? `${tag} related posts:`
+            : `There are no post with ${tag} tag`}
         </h3>
         {postLoading ? (
           <Loading />

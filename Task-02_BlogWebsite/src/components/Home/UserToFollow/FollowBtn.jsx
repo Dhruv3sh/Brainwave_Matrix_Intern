@@ -10,7 +10,7 @@ const FollowBtn = ({ userId }) => {
   const [isFollowed, setIsFollowed] = useState(false);
   const { currentUser } = Blog();
 
-  const { data, loading } = useSingleFetch(
+  const { data } = useSingleFetch(
     "users",
     currentUser?.uid,
     "follows"
@@ -34,7 +34,10 @@ const FollowBtn = ({ userId }) => {
         if (isFollowed) {
           await deleteDoc(followRef);
           await deleteDoc(followerRef);
-          toast.success("User is unFollowed");
+          toast.dismiss();
+          toast.success("User is unFollowed",{
+            autoClose: 1200,
+          });
         } else {
           await setDoc(followRef, {
             userId: userId,
@@ -42,11 +45,18 @@ const FollowBtn = ({ userId }) => {
           await setDoc(followerRef, {
             userId: userId,
           });
-          toast.success("User is Followed");
+          toast.dismiss();
+          toast.success("User is Followed",{
+            autoClose: 1200,
+          });
         }
       }
     } catch (error) {
-      toast.error(error.message);
+      console.log(error.message)
+      toast.dismiss();
+      toast.error(error.message,{
+        autoClose: 1200,
+      });
     }
   };
 

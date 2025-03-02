@@ -59,9 +59,9 @@ const SignUp = ({ setSignReq, setModal }) => {
   };
 
   return (
-    <div className="size mt-[6rem] text-center">
+    <div className=" m-1 mt-[3rem] text-center">
       <h2 className="text-3xl">Sign up with email</h2>
-      <p className="w-full sm:w-[25rem] mx-auto py-[3rem]">
+      <p className="w-full sm:w-[25rem] mx-auto py-[4rem]">
         Enter the email address associated with your account, and we’ll send a
         magic link to your inbox.
       </p>
@@ -76,9 +76,9 @@ const SignUp = ({ setSignReq, setModal }) => {
           title="rePassword"
         />
         <button
-          className={`first-letter:px-4 py-1 text-sm rounded-full bg-green-700
+          className={`px-4 py-1 text-sm rounded-full bg-green-700
         hover:bg-green-800 text-white w-fit mx-auto
-        ${loading ? "opacity-50 pointer-events-none" : ""}`}>
+        ${loading ? "opacity-50 " : ""}`}>
           Sign Up
         </button>
       </form>
