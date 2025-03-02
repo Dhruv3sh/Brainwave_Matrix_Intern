@@ -27,21 +27,13 @@ const DemoHeader = () => {
             alt="logo"
           />
         </Link>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 relative">
           <div className="hidden text-sm sm:flex items-center gap-5">
             {nav.map((link, i) => (
               <Link key={i} to={link.path}>
                 {link.title}
               </Link>
             ))}
-          </div>
-          <div className="relative">
-            <button
-              onClick={() => setAuthModel(true)}
-              className="hidden text-sm sm:flex items-center gap-5">
-              Sign In
-            </button>
-            <Auth modal={authModel} setModal={setAuthModel} />
           </div>
           <button
             onClick={() => setAuthModel(true)}
@@ -50,6 +42,7 @@ const DemoHeader = () => {
             `}>
             Get Started
           </button>
+          <Auth modal={authModel} setModal={setAuthModel} />
         </div>
       </div>
     </header>
